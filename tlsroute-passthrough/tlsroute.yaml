@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  parentRefs:
+    - name: cilium-tls-gateway
+  hostnames:
+    - "bookinfo.cilium.rocks"
+  rules:
+    - backendRefs:
+        - name: details
+          port: 8090
